@@ -27,6 +27,6 @@ export type FormState =
 
 export interface SessionPayload extends JWTPayload {
   userId: string;
-  email: string;
+  email?: string;
   role?: "user" | "admin";
 }
