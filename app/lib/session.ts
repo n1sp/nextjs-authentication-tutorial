@@ -39,6 +39,16 @@ export async function createSession(userId: string) {
   })
 }
 
+export async function getSession(): Promise<SessionPayload | null> {
+  const session = (await cookies()).get('session')?.value
+  if (!session) return null
+
+  const payload = await decrypt(session)
+  if (!payload) return null
+
+  // 型アサーションで SessionPayload にキャスト
+  return payload as SessionPayload
+}
 
 export async function updateSession() {
   const session = (await cookies()).get('session')?.value
