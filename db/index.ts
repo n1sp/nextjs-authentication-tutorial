@@ -1,3 +1,4 @@
+// db/index.ts(Self-implemented to match the official Next.js sample)
 import Database from 'better-sqlite3'
 import { drizzle } from 'drizzle-orm/better-sqlite3'
 

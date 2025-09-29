@@ -3,6 +3,8 @@ import { SignupFormSchema, FormState } from '@/app/lib/definitions'
 import bcrypt from 'bcrypt'
 import { db } from '@/db'
 import { users } from '@/db/schema'
+import { createSession, deleteSession } from '../lib/session'
+import { redirect } from 'next/navigation'
 
 export async function signup(state: FormState, formData: FormData) {
   // 1. Validate form fields
@@ -35,4 +37,15 @@ export async function signup(state: FormState, formData: FormData) {
     .returning({ id: users.id })
 
   const user = data[0]
+
+  // 4. Create user session
+  await createSession(user.id)
+
+  // 5. Redirect user
+  redirect('/profile')
+}
+
+export async function logout() {
+  await deleteSession()
+  redirect('/login')
 }
