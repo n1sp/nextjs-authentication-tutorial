@@ -1,3 +1,4 @@
+// db/schema.ts(サンプルに合わせて自作)
 import { sqliteTable, integer, text } from 'drizzle-orm/sqlite-core'
 
 export const users = sqliteTable('users', {
