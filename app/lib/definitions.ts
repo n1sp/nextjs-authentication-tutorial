@@ -15,6 +15,11 @@ export const SignupFormSchema = z.object({
     .regex(/[^a^zA-Z0-9]/, { message: 'Contain at least one special character.', }).trim(),
 })
 
+export const LoginFormSchema = z.object({
+  email: z.string().email(),
+  password: z.string().min(1, { message: "Password is required" }),
+})
+
 export type FormState =
   | {
     errors?: {
